@@ -1,7 +1,14 @@
-
 @font-face {
     font-family: 'Shabnam';
     src: url('../fonts/Shabnam.ttf') format('truetype'),
+}
+@font-face {
+    font-family: 'EstedadBold';
+    src: url('../fonts/Estedad-Bold.ttf') format('truetype'),
+}
+@font-face {
+    font-family: 'EstedadSemiBold';
+    src: url('../fonts/Estedad-SemiBold.ttf') format('truetype'),
 }
 html, body {
     margin: 0;
@@ -28,7 +35,7 @@ html, body {
     align-items: center;       /* Center horizontally */                  /* Take remaining space */
     height: 100vh;
     width: 25vw;
-    background-color: aliceblue;
+    background-color: cadetblue;
     border-left: solid 4px #f0f0f0;
 }
 .flex-item {
@@ -56,18 +63,19 @@ h3 {
     font-family: 'Shabnam', sans-serif;
     font-size: 20px;
     margin-bottom: 20px;
-    background-color: white;
+    background-color: rgb(67, 103, 104);
     width: 100%;
     box-sizing: border-box;
     padding: 16px 0;
     margin-top: 0;
     text-align: center;
     border-bottom: solid  2px #f0f0f0;
+    color: white;
 }
 .content-area {
     flex: 1;
     height: 100vh;
-    background-color: rgba(177, 211, 209, 0.979);
+    background-color: #393E46;
     text-align: center;
     color: whitesmoke;
 }
@@ -75,26 +83,33 @@ h1 {
     font-size: 3rem;
     margin: 16px 0 0;
     color: slateblue;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    text-shadow: 1px 1px 2px rgb(255, 255, 255);
     margin-top: 0;
+    font-family: 'EstedadBold';
 }
 #subtitle {
     font-size: 1.2rem;
     color: azure;
     margin-top: 0;
+    font-family: 'EstedadSemiBold';
+    border-bottom: solid gray 2px;
+    padding-bottom: 15px;
 }
 #logo {
     width: 60px;
     height: 60px;
-    margin-top: 8px;
+    margin-top: 16px;
     margin-bottom: 0;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    padding: 1px;
 }
 #school-img {
     width: 40vw;
     max-width: 1200px;
     max-height: 350px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 3px;
     animation: fadeIn 0.6s ease-in-out;
 }
 @keyframes fadeIn {
