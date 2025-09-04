@@ -2,42 +2,91 @@
 <html lang="fa" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>دیجی‌سمپاد - شهید بهشتی ۱ خوزستان</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دیجی‌سمپاد - شهید بهشتی ۱ خوزستان</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="main-layout">
-        <div class="flex-container">
-            <h3>منو</h3>
-            <button class="flex-item">
-                ورود
-            </button>
-            <button class="flex-item">
-                ثبت‌نام
-            </button>
-            <button class="flex-item">
-                اخبار
-            </button>
-            <button class="flex-item">
-                تکالیف
-            </button>
-            <button class="flex-item">
-                تقویم
-            </button>
-            <button class="flex-item">
-                خلاصهٔ درس
-            </button>
+  <div class="main-layout">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="منوی موبایل">
+      ☰
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>
+          منو
+        </h3>
+      </div>
+      
+      <nav class="nav-menu" role="navigation">
+        <button class="nav-item active" onclick="setActive(this)">
+          <span>ورود</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this)">
+          <span>ثبت‌نام</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this)">
+          <span>اخبار</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this)">
+          <span>تکالیف</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this)">
+          <span>تقویم</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this)">
+          <span>خلاصهٔ درس</span>
+          <span class="nav-icon"></span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content-area">
+      <div class="main-card">
+        <div class="logo-container">
+            <img class="logo" src="../resources/Sampad.svg.png" alt="لوگوی سمپاد"/>
         </div>
-        <div class="content-area">
-            <img id="logo" src="../resources/Sampad.svg.png" alt="لوگوی سمپاد" />
-            <h1>دیجی‌سمپاد</h1>
-            <h2 id="subtitle">شهید بهشتی ۱ خوزستان</h2>
-            <img id="school-img" src="../resources/shahidbeheshti.webp" alt="مدرسهٔ شهید بهشتی" />
+        
+        <h1 class="main-title">دیجی‌سمپاد</h1>
+        <h2 class="subtitle">شهید بهشتی ۱ خوزستان</h2>
+        
+        <div class="welcome-section">
+          <p class="welcome-text">
+            به پلتفرم آموزشی دیجی‌سمپاد خوش آمدید. این سیستم برای بهبود فرآیند یادگیری و ارتباط بهتر بین دانش‌آموزان، معلمان و والدین طراحی شده است.
+          </p>
+          
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number">۳۰۰</span>
+              <div class="stat-label">دانش‌آموز</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">۱۲</span>
+              <div class="stat-label">کلاس درس</div>
+            </div>
+          </div>
         </div>
-    </div>
+        
+        <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; margin-top: 20px;">
+          <img id="school" src="../resources/shahidbeheshti.webp" alt="مدرسهٔ شهید بهشتی ۱" />
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js">
+  </script>
 </body>
 
 </html>
