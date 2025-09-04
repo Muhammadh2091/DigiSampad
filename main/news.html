@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اخبار - دیجی‌سمپاد</title>
+  <link rel="stylesheet" href="news-styles.css" />
+</head>
+
+<body>
+  <div class="main-layout">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="منوی موبایل">
+      ☰
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>
+          <span class="menu-icon">📚</span>
+          منو
+        </h3>
+      </div>
+      
+      <nav class="nav-menu" role="navigation">
+        <button class="nav-item" onclick="setActive(this); showSection('home')">
+          <span>ورود</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this); showSection('register')">
+          <span>ثبت‌نام</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item active" onclick="setActive(this); showSection('news')">
+          <span>اخبار</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this); showSection('assignments')">
+          <span>تکالیف</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this); showSection('calendar')">
+          <span>تقویم</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="setActive(this); showSection('summaries')">
+          <span>خلاصهٔ درس</span>
+          <span class="nav-icon"></span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content-area">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">اخبار مدرسه</h1>
+        <p class="page-subtitle">آخرین اخبار و اطلاعیه‌های مدرسه شهید بهشتی ۱ خوزستان</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterNews('all')">همه اخبار</button>
+        <button class="filter-tab" onclick="filterNews('academic')">آموزشی</button>
+        <button class="filter-tab" onclick="filterNews('events')">رویدادها</button>
+        <button class="filter-tab" onclick="filterNews('announcements')">اطلاعیه‌ها</button>
+        <button class="filter-tab" onclick="filterNews('general')">عمومی</button>
+      </div>
+
+      <!-- News Grid -->
+      <div class="news-grid" id="newsGrid">
+        <!-- Featured News -->
+        <article class="news-card featured-news" data-category="academic">
+          <div class="featured-content">
+            <span class="category-badge academic">آموزشی</span>
+            <h2 class="featured-title">آغاز ثبت‌نام دوره‌های تابستانی ۱۴۰۳</h2>
+            <p class="featured-excerpt">
+              ثبت‌نام دوره‌های تقویتی و پیش‌دانشگاهی تابستان از تاریخ ۱۵ خرداد آغاز شده است. دانش‌آموزان می‌توانند در رشته‌های مختلف ریاضی، فیزیک، شیمی و زیست‌شناسی ثبت‌نام کنند.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۱۰ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(1)">مطالعه کامل</button>
+            </div>
+          </div>
+          <div class="featured-image">
+            🎓
+          </div>
+        </article>
+
+        <!-- Regular News Cards -->
+        <article class="news-card" data-category="events">
+          <div class="news-image">
+            🏆
+            <span class="category-badge events">رویدادها</span>
+          </div>
+          <div class="news-content">
+            <h3 class="news-title">مسابقات علمی بین مدارس سمپاد</h3>
+            <p class="news-excerpt">
+              مسابقات علمی سطح استان در رشته‌های ریاضی، فیزیک و شیمی روز جمعه ۲۰ خرداد در سالن اجتماعات مدرسه برگزار خواهد شد.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۸ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(2)">مطالعه کامل</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="news-card" data-category="announcements">
+          <div class="news-image">
+            📢
+            <span class="category-badge announcements">اطلاعیه‌ها</span>
+          </div>
+          <div class="news-content">
+            <h3 class="news-title">تغییر ساعات حضور کتابخانه</h3>
+            <p class="news-excerpt">
+              از تاریخ ۱۲ خرداد، کتابخانه مدرسه از ساعت ۷:۳۰ تا ۱۶:۳۰ آماده ارائه خدمات به دانش‌آموزان خواهد بود.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۷ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(3)">مطالعه کامل</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="news-card" data-category="academic">
+          <div class="news-image">
+            📚
+            <span class="category-badge academic">آموزشی</span>
+          </div>
+          <div class="news-content">
+            <h3 class="news-title">اعلام نتایج آزمون نیم‌سال دوم</h3>
+            <p class="news-excerpt">
+              نتایج آزمون نیم‌سال دوم تمامی پایه‌ها در سامانه مدرسه قرار گرفت. دانش‌آموزان می‌توانند از طریق پنل کاربری خود نمرات را مشاهده کنند.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۵ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(4)">مطالعه کامل</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="news-card" data-category="general">
+          <div class="news-image">
+            🌟
+            <span class="category-badge general">عمومی</span>
+          </div>
+          <div class="news-content">
+            <h3 class="news-title">درخشش دانش‌آموزان در المپیاد کشوری</h3>
+            <p class="news-excerpt">
+              ۵ نفر از دانش‌آموزان مدرسه موفق به کسب مقام‌های برتر در المپیادهای کشوری ریاضی و فیزیک شدند.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۳ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(5)">مطالعه کامل</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="news-card" data-category="events">
+          <div class="news-image">
+            🎨
+            <span class="category-badge events">رویدادها</span>
+          </div>
+          <div class="news-content">
+            <h3 class="news-title">نمایشگاه آثار هنری دانش‌آموزان</h3>
+            <p class="news-excerpt">
+              نمایشگاه آثار نقاشی و خوشنویسی دانش‌آموزان از ۱۵ تا ۲۰ خرداد در سالن هنر مدرسه برپا است.
+            </p>
+            <div class="news-meta">
+              <span class="news-date">📅 ۲ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(6)">مطالعه کامل</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <script src="news-script.js">
+  </script>
+</body>
+
+</html>
