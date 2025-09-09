@@ -1,78 +1,1072 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="اخبار مدرسه شهید بهشتی ۱ خوزستان - آخرین اخبار و اطلاعیه‌های آموزشی">
+  <meta name="keywords" content="اخبار مدرسه, سمپاد, آموزش, دانش‌آموزان">
   <title>اخبار - دیجی‌سمپاد</title>
-  <link rel="stylesheet" href="news-styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <style>
+    @font-face {
+      font-family: 'Vazir';
+      src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Regular.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'VazirBold';
+      src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir-Bold.woff2') format('woff2');
+      font-display: swap;
+    }
+
+    /* CSS Custom Properties for better maintainability */
+    :root {
+      --primary-color: #4a90e2;
+      --primary-dark: #357abd;
+      --secondary-color: #2d5a87;
+      --background-dark: #1a1d23;
+      --background-card: #2a2f36;
+      --text-primary: #f0f2f5;
+      --text-secondary: #b8bcc8;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-light: rgba(0, 0, 0, 0.2);
+      --shadow-heavy: rgba(0, 0, 0, 0.3);
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --border-radius: 12px;
+      --border-radius-large: 16px;
+      --spacing-xs: 8px;
+      --spacing-sm: 12px;
+      --spacing-md: 16px;
+      --spacing-lg: 20px;
+      --spacing-xl: 24px;
+      --spacing-2xl: 32px;
+    }
+
+    /* Reset and Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazir', 'Tahoma', sans-serif;
+      background: var(--background-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Layout Container */
+    .main-layout {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+      background: linear-gradient(180deg, var(--secondary-color), #1e3a5f);
+      border-left: 3px solid var(--primary-color); /* تغییر به border-left */
+      box-shadow: 2px 0 15px var(--shadow-light); /* تغییر سایه به سمت چپ */
+      position: fixed;
+      top: 0;
+      right: 0; /* تغییر به right */
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform var(--transition-normal);
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) transparent;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 3px;
+    }
+
+    .sidebar.mobile-hidden {
+      transform: translateX(100%); /* تغییر جهت انیمیشن */
+    }
+
+    .sidebar-header {
+      padding: var(--spacing-lg);
+      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 2px solid var(--primary-color);
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .sidebar-header h3 {
+      font-family: 'VazirBold', sans-serif;
+      font-size: 1.4rem;
+      margin: 0;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+    }
+
+    .menu-icon {
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
+      background: var(--primary-color);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      transition: transform var(--transition-fast);
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-menu {
+      padding: var(--spacing-lg) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+    }
+
+    .nav-item {
+      width: calc(100% - var(--spacing-2xl));
+      margin: 0 var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      color: #e8eaed;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-family: 'Vazir', sans-serif;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: right 0.6s;
+    }
+
+    .nav-item:hover::before {
+      right: 100%;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+      border-color: var(--primary-color);
+    }
+
+    .nav-icon {
+      width: var(--spacing-lg);
+      height: var(--spacing-lg);
+      background: currentColor;
+      border-radius: 3px;
+      opacity: 0.8;
+      transition: opacity var(--transition-fast);
+    }
+
+    .nav-item:hover .nav-icon {
+      opacity: 1;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: var(--spacing-lg);
+      left: var(--spacing-lg); /* تغییر به left */
+      z-index: 200;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm);
+      border-radius: var(--spacing-xs);
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--shadow-heavy);
+      font-size: 1.2rem;
+      transition: all var(--transition-normal);
+    }
+
+    .mobile-menu-toggle:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    .mobile-menu-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      margin-right: 280px; /* تغییر به margin-right */
+      padding: var(--spacing-2xl);
+      background: linear-gradient(135deg, #1e2328, var(--background-dark));
+      min-height: 100vh;
+      position: relative;
+      width: calc(100% - 280px);
+    }
+
+    .content-area::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(45, 90, 135, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    .page-title {
+      font-family: 'VazirBold', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      background: linear-gradient(135deg, var(--primary-color), #6bb6ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 10px 0;
+      line-height: 1.2;
+    }
+
+    .page-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-secondary);
+      margin: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-2xl);
+      flex-wrap: wrap;
+      padding: 0 var(--spacing-md);
+    }
+
+    .filter-tab {
+      padding: var(--spacing-sm) var(--spacing-xl);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(74, 144, 226, 0.3);
+      border-radius: 25px;
+      color: #e8eaed;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-family: 'Vazir', sans-serif;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .filter-tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .filter-tab:hover::before {
+      left: 100%;
+    }
+
+    .filter-tab:hover {
+      background: rgba(74, 144, 226, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+    }
+
+    .filter-tab.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+      border-color: var(--primary-color);
+    }
+
+    /* News Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* News Card */
+    .news-card {
+      background: linear-gradient(145deg, var(--background-card), #1f2329);
+      border-radius: var(--border-radius-large);
+      overflow: hidden;
+      box-shadow: 0 8px 25px var(--shadow-heavy);
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-normal);
+      position: relative;
+      animation: fadeInUp 0.6s ease-out;
+      width: 100%;
+    }
+
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(74, 144, 226, 0.25);
+      border-color: rgba(74, 144, 226, 0.4);
+    }
+
+    .news-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), #6bb6ff);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .news-card:hover::before {
+      opacity: 1;
+    }
+
+    /* News Image */
+    .news-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .news-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .news-image::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: transform 1s ease;
+    }
+
+    .news-card:hover .news-image::after {
+      transform: rotate(45deg) translate(50%, 50%);
+    }
+
+    /* Category Badge */
+    .category-badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px var(--shadow-heavy);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--border-color);
+      transition: transform var(--transition-fast);
+    }
+
+    .category-badge:hover {
+      transform: scale(1.05);
+    }
+
+    .category-badge.academic { 
+      background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9)); 
+    }
+    .category-badge.events { 
+      background: linear-gradient(135deg, rgba(243, 156, 18, 0.9), rgba(230, 126, 34, 0.9)); 
+    }
+    .category-badge.announcements { 
+      background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(34, 153, 84, 0.9)); 
+    }
+    .category-badge.general { 
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)); 
+    }
+
+    /* News Content */
+    .news-content {
+      padding: 25px;
+    }
+
+    .news-title {
+      font-family: 'VazirBold', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      margin: 0 0 var(--spacing-sm) 0;
+      line-height: 1.4;
+      transition: color var(--transition-fast);
+    }
+
+    .news-card:hover .news-title {
+      color: #6bb6ff;
+    }
+
+    .news-excerpt {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0 0 var(--spacing-lg) 0;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--border-color);
+      gap: var(--spacing-sm);
+    }
+
+    .news-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .read-more {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border: none;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-family: 'Vazir', sans-serif;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .read-more::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    .read-more:hover::before {
+      left: 100%;
+    }
+
+    .read-more:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    }
+
+    .read-more:active {
+      transform: scale(0.98);
+    }
+
+    /* Featured News */
+    .featured-news {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 300px;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .featured-content {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .featured-title {
+      font-family: 'VazirBold', sans-serif;
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin: 0 0 15px 0;
+      line-height: 1.3;
+    }
+
+    .featured-excerpt {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin: 0 0 25px 0;
+    }
+
+    .featured-image {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite linear;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px var(--spacing-lg);
+      color: var(--text-muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      margin-bottom: var(--spacing-lg);
+      opacity: 0.5;
+    }
+
+    /* Loading State */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 29, 35, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      backdrop-filter: blur(5px);
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(74, 144, 226, 0.3);
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    /* Modal Styles */
+    .news-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: var(--background-card);
+      color: var(--text-primary);
+      padding: var(--spacing-2xl);
+      border-radius: var(--border-radius-large);
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      font-family: 'Vazir', sans-serif;
+      position: relative;
+      transform: translateY(30px);
+      transition: transform var(--transition-normal);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 40px var(--shadow-heavy);
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-modal-btn:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    .modal-title {
+      font-family: 'VazirBold', sans-serif;
+      margin: 0 0 var(--spacing-lg) 0;
+      padding-right: 40px;
+      line-height: 1.4;
+      font-size: 1.5rem;
+    }
+
+    .modal-text {
+      line-height: 1.8;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+
+    /* Mobile Overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 50;
+      backdrop-filter: blur(3px);
+    }
+
+    .mobile-overlay.active {
+      display: block;
+    }
+
+    /* Animations */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shimmer {
+      0% { transform: rotate(45deg) translateX(-100%); }
+      100% { transform: rotate(45deg) translateX(100%); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Notification Styles */
+    .notification {
+      position: fixed;
+      top: var(--spacing-lg);
+      right: var(--spacing-lg);
+      background: var(--primary-color);
+      color: white;
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--spacing-xs);
+      box-shadow: 0 4px 12px var(--shadow-heavy);
+      z-index: 1002;
+      transform: translateX(100%);
+      transition: transform var(--transition-normal);
+      font-family: 'Vazir', sans-serif;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      background: #27ae60;
+    }
+
+    .notification.error {
+      background: #e74c3c;
+    }
+
+    .notification.warning {
+      background: #f39c12;
+    }
+
+    /* Search Box */
+    .search-container {
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-color);
+      border-radius: 25px;
+      color: var(--text-primary);
+      font-family: 'Vazir', sans-serif;
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      transition: all var(--transition-normal);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-lg);
+      }
+      
+      .content-area {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .sidebar {
+        transform: translateX(100%);
+      }
+
+      .sidebar.mobile-visible {
+        transform: translateX(0);
+      }
+
+      .content-area {
+        margin-right: 0; /* تغییر به margin-right */
+        padding: var(--spacing-lg);
+        padding-top: 80px;
+        width: 100%;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+
+      .featured-news {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-content {
+        padding: var(--spacing-2xl) 25px;
+      }
+
+      .filter-tabs {
+        gap: var(--spacing-xs);
+        padding: 0 var(--spacing-sm);
+      }
+
+      .filter-tab {
+        padding: var(--spacing-sm) 18px;
+        font-size: 0.9rem;
+      }
+
+      .news-meta {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+      }
+
+      .news-date {
+        justify-content: center;
+      }
+
+      .modal-content {
+        margin: var(--spacing-sm);
+        max-height: calc(100vh - var(--spacing-xl));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content-area {
+        padding: 15px;
+        padding-top: 70px;
+      }
+
+      .news-content {
+        padding: var(--spacing-lg);
+      }
+
+      .featured-content {
+        padding: 25px var(--spacing-lg);
+      }
+
+      .category-badge {
+        top: var(--spacing-xs);
+        left: var(--spacing-xs);
+        padding: 6px var(--spacing-sm);
+        font-size: 0.8rem;
+      }
+
+      .modal-content {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-xs);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .sidebar,
+      .mobile-menu-toggle,
+      .filter-tabs,
+      .read-more {
+        display: none !important;
+      }
+
+      .content-area {
+        margin-right: 0; /* تغییر به margin-right */
+        padding: 20px;
+        width: 100%;
+      }
+
+      .news-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+    }
+
+    /* High Contrast Mode */
+    @media (prefers-contrast: high) {
+      :root {
+        --background-dark: #000;
+        --background-card: #1a1a1a;
+        --text-primary: #fff;
+        --border-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Dark/Light Mode Toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: var(--spacing-lg);
+      left: var(--spacing-lg);
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--shadow-heavy);
+      font-size: 1.2rem;
+      transition: all var(--transition-normal);
+      z-index: 100;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+  </div>
+
   <div class="main-layout">
     <!-- Mobile Menu Toggle -->
     <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="منوی موبایل">
       ☰
     </button>
 
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" role="navigation">
       <div class="sidebar-header">
         <h3>
           <span class="menu-icon">📚</span>
-          منو
+          دیجی‌سمپاد
         </h3>
       </div>
       
-      <nav class="nav-menu" role="navigation">
-        <button class="nav-item" onclick="setActive(this); showSection('home')">
+      <nav class="nav-menu">
+        <button class="nav-item" onclick="setActive(this); navigateToSection('home')" aria-label="ورود">
           <span>ورود</span>
           <span class="nav-icon"></span>
         </button>
-        <button class="nav-item" onclick="setActive(this); showSection('register')">
+        <button class="nav-item" onclick="setActive(this); navigateToSection('register')" aria-label="ثبت‌نام">
           <span>ثبت‌نام</span>
           <span class="nav-icon"></span>
         </button>
-        <button class="nav-item active" onclick="setActive(this); showSection('news')">
+        <button class="nav-item active" onclick="setActive(this); navigateToSection('news')" aria-label="اخبار">
           <span>اخبار</span>
           <span class="nav-icon"></span>
         </button>
-        <button class="nav-item" onclick="setActive(this); showSection('assignments')">
+        <button class="nav-item" onclick="setActive(this); navigateToSection('assignments')" aria-label="تکالیف">
           <span>تکالیف</span>
           <span class="nav-icon"></span>
         </button>
-        <button class="nav-item" onclick="setActive(this); showSection('calendar')">
+        <button class="nav-item" onclick="setActive(this); navigateToSection('calendar')" aria-label="تقویم">
           <span>تقویم</span>
           <span class="nav-icon"></span>
         </button>
-        <button class="nav-item" onclick="setActive(this); showSection('summaries')">
-          <span>خلاصهٔ درس</span>
+        <button class="nav-item" onclick="setActive(this); navigateToSection('summaries')" aria-label="خلاصه درس">
+          <span>خلاصه‌ درس</span>
           <span class="nav-icon"></span>
         </button>
       </nav>
     </aside>
 
     <!-- Main Content -->
-    <main class="content-area">
+    <main class="content-area" role="main">
       <!-- Page Header -->
-      <div class="page-header">
+      <header class="page-header">
         <h1 class="page-title">اخبار مدرسه</h1>
         <p class="page-subtitle">آخرین اخبار و اطلاعیه‌های مدرسه شهید بهشتی ۱ خوزستان</p>
+      </header>
+
+      <!-- Search Container -->
+      <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="جستجو در اخبار..." onkeyup="searchNews()" aria-label="جستجو در اخبار">
       </div>
 
       <!-- Filter Tabs -->
-      <div class="filter-tabs">
-        <button class="filter-tab active" onclick="filterNews('all')">همه اخبار</button>
-        <button class="filter-tab" onclick="filterNews('academic')">آموزشی</button>
-        <button class="filter-tab" onclick="filterNews('events')">رویدادها</button>
-        <button class="filter-tab" onclick="filterNews('announcements')">اطلاعیه‌ها</button>
-        <button class="filter-tab" onclick="filterNews('general')">عمومی</button>
+      <div class="filter-tabs" role="tablist">
+        <button class="filter-tab active" onclick="filterNews('all')" role="tab" aria-selected="true" aria-label="همه اخبار">همه اخبار</button>
+        <button class="filter-tab" onclick="filterNews('academic')" role="tab" aria-selected="false" aria-label="اخبار آموزشی">آموزشی</button>
+        <button class="filter-tab" onclick="filterNews('events')" role="tab" aria-selected="false" aria-label="رویدادها">رویدادها</button>
+        <button class="filter-tab" onclick="filterNews('announcements')" role="tab" aria-selected="false" aria-label="اطلاعیه‌ها">اطلاعیه‌ها</button>
+        <button class="filter-tab" onclick="filterNews('general')" role="tab" aria-selected="false" aria-label="اخبار عمومی">عمومی</button>
       </div>
 
       <!-- News Grid -->
-      <div class="news-grid" id="newsGrid">
+      <div class="news-grid" id="newsGrid" role="feed">
         <!-- Featured News -->
-        <article class="news-card featured-news" data-category="academic">
+        <article class="news-card featured-news" data-category="academic" data-keywords="ثبت‌نام دوره تابستانی آموزشی">
           <div class="featured-content">
             <span class="category-badge academic">آموزشی</span>
             <h2 class="featured-title">آغاز ثبت‌نام دوره‌های تابستانی ۱۴۰۳</h2>
@@ -80,18 +1074,18 @@
               ثبت‌نام دوره‌های تقویتی و پیش‌دانشگاهی تابستان از تاریخ ۱۵ خرداد آغاز شده است. دانش‌آموزان می‌توانند در رشته‌های مختلف ریاضی، فیزیک، شیمی و زیست‌شناسی ثبت‌نام کنند.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۱۰ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(1)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۱۰ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(1)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
-          <div class="featured-image">
+          <div class="featured-image" aria-hidden="true">
             🎓
           </div>
         </article>
 
         <!-- Regular News Cards -->
-        <article class="news-card" data-category="events">
-          <div class="news-image">
+        <article class="news-card" data-category="events" data-keywords="مسابقات علمی ریاضی فیزیک شیمی">
+          <div class="news-image" aria-hidden="true">
             🏆
             <span class="category-badge events">رویدادها</span>
           </div>
@@ -101,14 +1095,14 @@
               مسابقات علمی سطح استان در رشته‌های ریاضی، فیزیک و شیمی روز جمعه ۲۰ خرداد در سالن اجتماعات مدرسه برگزار خواهد شد.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۸ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(2)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۸ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(2)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
         </article>
 
-        <article class="news-card" data-category="announcements">
-          <div class="news-image">
+        <article class="news-card" data-category="announcements" data-keywords="کتابخانه ساعات کاری تغییر">
+          <div class="news-image" aria-hidden="true">
             📢
             <span class="category-badge announcements">اطلاعیه‌ها</span>
           </div>
@@ -118,14 +1112,14 @@
               از تاریخ ۱۲ خرداد، کتابخانه مدرسه از ساعت ۷:۳۰ تا ۱۶:۳۰ آماده ارائه خدمات به دانش‌آموزان خواهد بود.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۷ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(3)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۷ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(3)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
         </article>
 
-        <article class="news-card" data-category="academic">
-          <div class="news-image">
+        <article class="news-card" data-category="academic" data-keywords="نتایج آزمون نیم‌سال نمرات">
+          <div class="news-image" aria-hidden="true">
             📚
             <span class="category-badge academic">آموزشی</span>
           </div>
@@ -135,14 +1129,14 @@
               نتایج آزمون نیم‌سال دوم تمامی پایه‌ها در سامانه مدرسه قرار گرفت. دانش‌آموزان می‌توانند از طریق پنل کاربری خود نمرات را مشاهده کنند.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۵ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(4)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۵ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(4)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
         </article>
 
-        <article class="news-card" data-category="general">
-          <div class="news-image">
+        <article class="news-card" data-category="general" data-keywords="المپیاد درخشش دانش‌آموزان موفقیت">
+          <div class="news-image" aria-hidden="true">
             🌟
             <span class="category-badge general">عمومی</span>
           </div>
@@ -152,14 +1146,14 @@
               ۵ نفر از دانش‌آموزان مدرسه موفق به کسب مقام‌های برتر در المپیادهای کشوری ریاضی و فیزیک شدند.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۳ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(5)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۳ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(5)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
         </article>
 
-        <article class="news-card" data-category="events">
-          <div class="news-image">
+        <article class="news-card" data-category="events" data-keywords="نمایشگاه هنری نقاشی خوشنویسی">
+          <div class="news-image" aria-hidden="true">
             🎨
             <span class="category-badge events">رویدادها</span>
           </div>
@@ -169,17 +1163,532 @@
               نمایشگاه آثار نقاشی و خوشنویسی دانش‌آموزان از ۱۵ تا ۲۰ خرداد در سالن هنر مدرسه برپا است.
             </p>
             <div class="news-meta">
-              <span class="news-date">📅 ۲ خرداد ۱۴۰۳</span>
-              <button class="read-more" onclick="openNews(6)">مطالعه کامل</button>
+              <span class="news-date" aria-label="تاریخ انتشار">📅 ۲ خرداد ۱۴۰۳</span>
+              <button class="read-more" onclick="openNews(6)" aria-label="مطالعه کامل خبر">مطالعه کامل</button>
             </div>
           </div>
         </article>
       </div>
+
+      <!-- Empty State (Hidden by default) -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">🔍</div>
+        <h3>نتیجه‌ای یافت نشد</h3>
+        <p>متاسفانه نتیجه‌ای برای جستجوی شما یافت نشد. لطفاً کلمات کلیدی دیگری امتحان کنید.</p>
+      </div>
     </main>
   </div>
 
-  <script src="news-script.js">
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم" title="تغییر تم">
+    🌙
+  </button>
+
+  <script>
+    // Global Variables
+    let currentFilter = 'all';
+    let searchTerm = '';
+    let allNewsCards = [];
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeApp();
+    });
+
+    function initializeApp() {
+      // Cache news cards for better performance
+      allNewsCards = Array.from(document.querySelectorAll('.news-card'));
+      
+      // Add keyboard navigation
+      setupKeyboardNavigation();
+      
+      // Add scroll animations
+      setupScrollAnimations();
+      
+      // Setup service worker for offline functionality
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+          console.log('Service Worker registration failed:', err);
+        });
+      }
+    }
+
+    // Navigation Functions
+    function setActive(element) {
+      // Remove active class from all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        item.setAttribute('aria-selected', 'false');
+      });
+      
+      // Add active class to clicked item
+      element.classList.add('active');
+      element.setAttribute('aria-selected', 'true');
+      
+      // Add ripple effect
+      addRippleEffect(element);
+    }
+
+    function navigateToSection(section) {
+      showLoading();
+      
+      // Simulate navigation delay
+      setTimeout(() => {
+        console.log('Navigating to section:', section);
+        hideLoading();
+        showNotification(`در حال انتقال به بخش ${getSectionName(section)}...`, 'success');
+        
+        // Close mobile menu after navigation
+        if (window.innerWidth <= 768) {
+          toggleMobileMenu();
+        }
+      }, 800);
+    }
+
+    function getSectionName(section) {
+      const sectionNames = {
+        'home': 'ورود',
+        'register': 'ثبت‌نام',
+        'news': 'اخبار',
+        'assignments': 'تکالیف',
+        'calendar': 'تقویم',
+        'summaries': 'خلاصه‌ درس'
+      };
+      return sectionNames[section] || section;
+    }
+
+    // Mobile Menu Functions
+    function toggleMobileMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('mobileOverlay');
+      const isVisible = sidebar.classList.contains('mobile-visible');
+      
+      if (isVisible) {
+        sidebar.classList.remove('mobile-visible');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        sidebar.setAttribute('aria-hidden', 'true');
+      } else {
+        sidebar.classList.add('mobile-visible');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        sidebar.setAttribute('aria-hidden', 'false');
+        
+        // Focus first nav item for accessibility
+        const firstNavItem = sidebar.querySelector('.nav-item');
+        if (firstNavItem) firstNavItem.focus();
+      }
+    }
+
+    // Filter and Search Functions
+    function filterNews(category, updateTabs = true) {
+      currentFilter = category;
+      
+      if (updateTabs) {
+        // Update active tab
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        filterTabs.forEach(tab => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+        });
+        event.target.classList.add('active');
+        event.target.setAttribute('aria-selected', 'true');
+      }
+      
+      applyFilters();
+    }
+
+    function searchNews() {
+      const searchInput = document.getElementById('searchInput');
+      searchTerm = searchInput.value.toLowerCase().trim();
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+      
+      allNewsCards.forEach((card, index) => {
+        const category = card.dataset.category;
+        const keywords = card.dataset.keywords || '';
+        const title = card.querySelector('.news-title')?.textContent || '';
+        const excerpt = card.querySelector('.news-excerpt')?.textContent || '';
+        
+        const matchesCategory = currentFilter === 'all' || category === currentFilter;
+        const matchesSearch = !searchTerm || 
+          title.toLowerCase().includes(searchTerm) ||
+          excerpt.toLowerCase().includes(searchTerm) ||
+          keywords.toLowerCase().includes(searchTerm);
+        
+        if (matchesCategory && matchesSearch) {
+          showCard(card, index);
+          visibleCount++;
+        } else {
+          hideCard(card);
+        }
+      });
+      
+      // Show empty state if no results
+      const emptyState = document.getElementById('emptyState');
+      if (visibleCount === 0) {
+        emptyState.style.display = 'block';
+        emptyState.style.animation = 'fadeInUp 0.5s ease-out';
+      } else {
+        emptyState.style.display = 'none';
+      }
+    }
+
+    function showCard(card, index) {
+      card.style.display = 'block';
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 50);
+    }
+
+    function hideCard(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        card.style.display = 'none';
+      }, 200);
+    }
+
+    // News Modal Functions
+    function openNews(id) {
+      // Close any existing modal
+      const existingModal = document.querySelector('.news-modal');
+      if (existingModal) {
+        existingModal.remove();
+      }
+
+      const newsData = {
+        1: {
+          title: "آغاز ثبت‌نام دوره‌های تابستانی ۱۴۰۳",
+          content: `
+            <p>ثبت‌نام دوره‌های تقویتی و پیش‌دانشگاهی تابستان از تاریخ ۱۵ خرداد آغاز شده است.</p>
+            
+            <h4>رشته‌های ارائه شده:</h4>
+            <ul>
+              <li>ریاضی پایه و پیشرفته</li>
+              <li>فیزیک نظری و آزمایشگاهی</li>
+              <li>شیمی عمومی و آلی</li>
+              <li>زیست‌شناسی جانوری و گیاهی</li>
+            </ul>
+            
+            <p>برای کسب اطلاعات بیشتر و ثبت‌نام به دفتر آموزشی مدرسه مراجعه کرده یا با شماره تلفن ۰۶۱-۳۳۴۵۶۷۸۹ تماس بگیرید.</p>
+          `
+        },
+        2: {
+          title: "مسابقات علمی بین مدارس سمپاد",
+          content: `
+            <p>مسابقات علمی سطح استان در رشته‌های ریاضی، فیزیک و شیمی روز جمعه ۲۰ خرداد در سالن اجتماعات مدرسه برگزار خواهد شد.</p>
+            
+            <h4>جزئیات مسابقه:</h4>
+            <ul>
+              <li>زمان: ساعت ۸:۰۰ الی ۱۲:۰۰</li>
+              <li>مکان: سالن اجتماعات طبقه همکف</li>
+              <li>مهلت ثبت‌نام: تا ۱۸ خرداد</li>
+            </ul>
+            
+            <p>دانش‌آموزان علاقه‌مند می‌توانند از طریق دفتر آموزشی نام خود را ثبت کنند.</p>
+          `
+        },
+        3: {
+          title: "تغییر ساعات حضور کتابخانه",
+          content: `
+            <p>از تاریخ ۱۲ خرداد، کتابخانه مدرسه از ساعت ۷:۳۰ تا ۱۶:۳۰ آماده ارائه خدمات به دانش‌آموزان خواهد بود.</p>
+            
+            <h4>خدمات کتابخانه:</h4>
+            <ul>
+              <li>امانت کتاب و منابع درسی</li>
+              <li>استفاده از سالن مطالعه</li>
+              <li>دسترسی به منابع دیجیتال</li>
+              <li>راهنمایی در انجام تحقیقات</li>
+            </ul>
+            
+            <p>این تغییر به منظور بهتر خدمت‌رسانی به دانش‌آموزان انجام شده است.</p>
+          `
+        },
+        4: {
+          title: "اعلام نتایج آزمون نیم‌سال دوم",
+          content: `
+            <p>نتایج آزمون نیم‌سال دوم تمامی پایه‌ها در سامانه مدرسه قرار گرفت.</p>
+            
+            <h4>نحوه مشاهده نمرات:</h4>
+            <ol>
+              <li>وارد پنل کاربری خود شوید</li>
+              <li>بخش "نمرات و ارزیابی" را انتخاب کنید</li>
+              <li>ترم دوم را انتخاب کنید</li>
+            </ol>
+            
+            <p>در صورت داشتن سوال یا مشکل در مشاهده نمرات، با دفتر آموزشی تماس بگیرید.</p>
+          `
+        },
+        5: {
+          title: "درخشش دانش‌آموزان در المپیاد کشوری",
+          content: `
+            <p>۵ نفر از دانش‌آموزان مدرسه موفق به کسب مقام‌های برتر در المپیادهای کشوری شدند.</p>
+            
+            <h4>مقام‌های کسب شده:</h4>
+            <ul>
+              <li>۲ مدال طلا در المپیاد ریاضی</li>
+              <li>۲ مدال نقره در المپیاد فیزیک</li>
+              <li>۱ مدال برنز در المپیاد شیمی</li>
+            </ul>
+            
+            <p>این افتخار نشان‌دهنده کیفیت آموزشی بالای مدرسه و تلاش دانش‌آموزان و اساتید محترم است.</p>
+          `
+        },
+        6: {
+          title: "نمایشگاه آثار هنری دانش‌آموزان",
+          content: `
+            <p>نمایشگاه آثار نقاشی و خوشنویسی دانش‌آموزان از ۱۵ تا ۲۰ خرداد در سالن هنر مدرسه برپا است.</p>
+            
+            <h4>بخش‌های نمایشگاه:</h4>
+            <ul>
+              <li>نقاشی آبرنگ و روغن</li>
+              <li>خوشنویسی سنتی و مدرن</li>
+              <li>طراحی گرافیکی</li>
+              <li>عکاسی هنری</li>
+            </ul>
+            
+            <p>از تمامی دانش‌آموزان، اولیا و علاقه‌مندان دعوت می‌شود تا از این نمایشگاه بازدید کنند.</p>
+          `
+        }
+      };
+
+      const news = newsData[id];
+      if (!news) {
+        showNotification('خبر مورد نظر یافت نشد.', 'error');
+        return;
+      }
+
+      createModal(news);
+    }
+
+    function createModal(news) {
+      const modalHTML = `
+        <div class="news-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+          <div class="modal-content">
+            <button class="close-modal-btn" aria-label="بستن" title="بستن">×</button>
+            <h2 class="modal-title" id="modal-title">${news.title}</h2>
+            <div class="modal-text">${news.content}</div>
+          </div>
+        </div>
+      `;
+      
+      document.body.insertAdjacentHTML('beforeend', modalHTML);
+      const modal = document.querySelector('.news-modal');
+      const modalContent = modal.querySelector('.modal-content');
+      const closeBtn = modal.querySelector('.close-modal-btn');
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
+      // Focus management
+      const previousFocus = document.activeElement;
+      closeBtn.focus();
+      
+      // Animate in
+      setTimeout(() => {
+        modal.style.opacity = '1';
+        modalContent.style.transform = 'translateY(0)';
+      }, 10);
+      
+      // Close modal function
+      const closeModal = () => {
+        modal.style.opacity = '0';
+        modalContent.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+          modal.remove();
+          document.body.style.overflow = '';
+          if (previousFocus) previousFocus.focus();
+        }, 300);
+      };
+      
+      // Event listeners
+      closeBtn.addEventListener('click', closeModal);
+      
+      // Keyboard handling
+      const handleKeydown = (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+          document.removeEventListener('keydown', handleKeydown);
+        }
+        
+        // Trap focus within modal
+        if (e.key === 'Tab') {
+          const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          const firstElement = focusableElements[0];
+          const lastElement = focusableElements[focusableElements.length - 1];
+          
+          if (e.shiftKey && document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          } else if (!e.shiftKey && document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      };
+      
+      document.addEventListener('keydown', handleKeydown);
+      
+      // Close when clicking outside
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+          document.removeEventListener('keydown', handleKeydown);
+        }
+      });
+      
+    }
+        // Utility Functions
+    function showLoading() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.style.display = 'flex';
+    }
+
+    function hideLoading() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.style.display = 'none';
+    }
+
+    function showNotification(message, type = 'success') {
+      // Remove existing notifications
+      const existingNotifications = document.querySelectorAll('.notification');
+      existingNotifications.forEach(notification => notification.remove());
+
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      notification.setAttribute('role', 'alert');
+      notification.setAttribute('aria-live', 'assertive');
+
+      document.body.appendChild(notification);
+
+      // Animate in
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 10);
+
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 5000);
+    }
+
+    function addRippleEffect(element) {
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      element.appendChild(ripple);
+
+      // Remove ripple after animation completes
+      setTimeout(() => {
+        if (ripple.parentNode) {
+          ripple.parentNode.removeChild(ripple);
+        }
+      }, 600);
+    }
+
+    function setupKeyboardNavigation() {
+      document.addEventListener('keydown', (e) => {
+        // Close modal with Escape key
+        if (e.key === 'Escape') {
+          const modal = document.querySelector('.news-modal');
+          if (modal) {
+            modal.querySelector('.close-modal-btn').click();
+          }
+        }
+
+        // Navigate tabs with arrow keys
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          const tabs = document.querySelectorAll('.filter-tab');
+          const currentTab = document.querySelector('.filter-tab.active');
+          let currentIndex = Array.from(tabs).indexOf(currentTab);
+
+          if (e.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % tabs.length;
+          } else if (e.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          }
+
+          tabs[currentIndex].click();
+          tabs[currentIndex].focus();
+        }
+      });
+    }
+
+    function setupScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe news cards for animation
+      document.querySelectorAll('.news-card').forEach(card => {
+        observer.observe(card);
+      });
+    }
+
+    // Theme Toggle Function
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      const themeToggle = document.querySelector('.theme-toggle');
+      themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+      
+      showNotification(`تم ${newTheme === 'dark' ? 'تیره' : 'روشن'} فعال شد.`);
+    }
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeToggle = document.querySelector('.theme-toggle');
+      themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    }
+
+    // Add ripple effect styles
+    const rippleStyles = `
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.4);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = rippleStyles;
+    document.head.appendChild(styleSheet);
   </script>
 </body>
-
 </html>
