@@ -487,11 +487,34 @@
       box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
     }
 
+    /* Active Filter Tab */
     .filter-tab.active {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: white;
       box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
       border-color: var(--primary-color);
+      transition: all var(--transition-normal);
+    }
+
+    /* Light Theme Adjustments */
+    [data-theme="light"] .filter-tab.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
+      border-color: var(--primary-color);
+      transition: all var(--transition-normal);
+    }
+
+    /* Default and Hover States (to avoid confusion) */
+    .filter-tab {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(74, 144, 226, 0.3);
+      color: #e8eaed;
+    }
+
+    .filter-tab:hover {
+      background: rgba(74, 144, 226, 0.2);
+      border-color: rgba(29, 78, 216, 0.3);
     }
 
     /* News Grid */
@@ -1175,6 +1198,11 @@
       background: var(--primary-dark);
       transform: scale(1.1);
     }
+
+    :root {
+      --primary-color: #4a90e2;
+      --primary-dark: #357ABD;
+    }
   </style>
 </head>
 
@@ -1246,15 +1274,15 @@
 
       <!-- Filter Tabs -->
       <div class="filter-tabs" role="tablist">
-        <button class="filter-tab active" onclick="filterNews('all')" role="tab" aria-selected="true"
+        <button class="filter-tab active" onclick="filterNews('all', event)" role="tab" aria-selected="true"
           aria-label="همه اخبار">همه اخبار</button>
-        <button class="filter-tab" onclick="filterNews('academic')" role="tab" aria-selected="false"
+        <button class="filter-tab" onclick="filterNews('academic', event)" role="tab" aria-selected="false"
           aria-label="اخبار آموزشی">آموزشی</button>
-        <button class="filter-tab" onclick="filterNews('events')" role="tab" aria-selected="false"
+        <button class="filter-tab" onclick="filterNews('events', event)" role="tab" aria-selected="false"
           aria-label="رویدادها">رویدادها</button>
-        <button class="filter-tab" onclick="filterNews('announcements')" role="tab" aria-selected="false"
+        <button class="filter-tab" onclick="filterNews('announcements', event)" role="tab" aria-selected="false"
           aria-label="اطلاعیه‌ها">اطلاعیه‌ها</button>
-        <button class="filter-tab" onclick="filterNews('general')" role="tab" aria-selected="false"
+        <button class="filter-tab" onclick="filterNews('general', event)" role="tab" aria-selected="false"
           aria-label="اخبار عمومی">عمومی</button>
       </div>
 
@@ -1483,12 +1511,14 @@
       currentFilter = category;
 
       if (updateTabs && event) {
-        // Update active tab
+        // Remove active class from all tabs
         const filterTabs = document.querySelectorAll('.filter-tab');
         filterTabs.forEach(tab => {
           tab.classList.remove('active');
           tab.setAttribute('aria-selected', 'false');
         });
+
+        // Add active class to the clicked tab
         event.target.classList.add('active');
         event.target.setAttribute('aria-selected', 'true');
       }
