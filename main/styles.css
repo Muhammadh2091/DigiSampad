@@ -142,7 +142,7 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    width: 280px;
+    width: clamp(240px, 30vw, 320px);
     background: linear-gradient(180deg, var(--secondary-color), #1e3a5f);
     border-left: 3px solid var(--primary-color);
     /* تغییر به border-left */
@@ -313,7 +313,7 @@ body {
 /* Content Area */
 .content-area {
     flex: 1;
-    margin-right: 280px;
+    margin-right: clamp(240px, 30vw, 320px);
     padding: var(--spacing-2xl);
     background: linear-gradient(135deg, #1e2328, var(--background-dark));
     min-height: 100vh;
@@ -607,6 +607,7 @@ body {
     }
 
     .sidebar {
+        width: 100vw;
         transform: translateX(100%);
     }
 
@@ -617,11 +618,15 @@ body {
     .content-area {
         margin-right: 0;
         padding: var(--spacing-lg);
+        width: 100%;
+        margin-left: 0;
     }
 
     .main-card {
         padding: var(--spacing-xl);
         margin-top: 60px;
+        max-width: none;
+        width: 100%;
     }
 
     .main-title {
@@ -641,11 +646,17 @@ body {
         padding: var(--spacing-lg);
         margin: var(--spacing-lg) 0;
     }
+    .main-layout {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
     .main-card {
         padding: var(--spacing-lg);
+        margin: var(--spacing-sm);
+        width: calc(100% - 2 * var(--spacing-sm));
+        max-width: none;
     }
 
     .main-title {
@@ -660,6 +671,27 @@ body {
 
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 260px;
+    }
+
+    .content-area {
+        margin-right: 260px;
+        padding: var(--spacing-lg);
+    }
+
+    .main-card {
+        padding: var(--spacing-xl);
+    }
+
+    .school-image {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -694,6 +726,45 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--text-primary)
+}
+
+@media (max-width: 480px) {
+    .main-card {
+        padding: var(--spacing-md);
+        /* Reduce padding further */
+        margin: var(--spacing-sm);
+        /* Add margins */
+        width: calc(100vw - 2 * var(--spacing-sm));
+        /* Account for margins */
+    }
+
+    .school-image {
+        width: 100%;
+        height: 200px;
+        /* Fixed height for very small screens */
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    backdrop-filter: blur(3px);
+    display: none;
+    /* Add this */
+}
+
+.mobile-overlay.active {
+    display: block;
 }
 
 .sidebar {
