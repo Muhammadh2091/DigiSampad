@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دیجی‌سمپاد - تولدها</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغییر تم" title="تغییر تم">
+        🌙
+    </button>
+
+    <div class="main-layout">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="منوی موبایل">
+            ☰
+        </button>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-hidden="true">
+            <div class="sidebar-header">
+                <h3>
+                    <span class="menu-icon">📚</span>
+                    دیجی‌سمپاد
+                </h3>
+            </div>
+            <nav class="nav-menu" role="navigation">
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>ورود</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>ثبت‌نام</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>اخبار</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item active" onclick="handleNav(this)" aria-selected="true">
+                    <span>تولدها</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>تکالیف</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>تقویم</span>
+                    <span class="nav-icon"></span>
+                </button>
+                <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+                    <span>خلاصهٔ درس</span>
+                    <span class="nav-icon"></span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <div class="main-card">
+                <h1 class="main-title">تولدها</h1>
+                <h2 class="subtitle">تبریک به دانش‌آموزان و پرسنل مدرسه</h2>
+
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-icon">🎉</div>
+                        <h3 class="news-title">تبریک تولد به علی رضایی</h3>
+                        <div class="news-meta">
+                            <span class="news-category">دانش‌آموز</span>
+                            <span class="news-date">📅 ۲۵ شهریور ۱۴۰۴</span>
+                        </div>
+                        <p class="news-content">
+                            امروز تولد علی رضایی، دانش‌آموز ممتاز پایهٔ نهم است! برای او آرزوی موفقیت، سلامتی و سالی پر
+                            از شادی داریم. 🎂
+                        </p>
+                        <a href="#" class="news-link">ارسال پیام تبریک</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-icon">🎂</div>
+                        <h3 class="news-title">تبریک تولد به آقای هادی سواعدی</h3>
+                        <div class="news-meta">
+                            <span class="news-category">معلم</span>
+                            <span class="news-date">📅 ۲۴ شهریور ۱۴۰۴</span>
+                        </div>
+                        <p class="news-content">
+                            تبریک به آقای هادی سواعدی، معلم دلسوز علوم مدرسه! آرزوی سالی سرشار از موفقیت و شادکامی
+                            برای ایشان داریم. 🌟
+                        </p>
+                        <a href="#" class="news-link">ارسال پیام تبریک</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-icon">🎈</div>
+                        <h3 class="news-title">تبریک تولد به محمد حسینی</h3>
+                        <div class="news-meta">
+                            <span class="news-category">دانش‌آموز</span>
+                            <span class="news-date">📅 ۲۳ شهریور ۱۴۰۴</span>
+                        </div>
+                        <p class="news-content">
+                            تولد محمد حسینی، دانش‌آموز پایهٔ یازدهم را جشن می‌گیریم! برای او سالی پر از پیشرفت و خوشبختی
+                            آرزو داریم. 🎁
+                        </p>
+                        <a href="#" class="news-link">ارسال پیام تبریک</a>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-icon">🌟</div>
+                        <h3 class="news-title">تبریک تولد به آقای احمد کریمی</h3>
+                        <div class="news-meta">
+                            <span class="news-category">معاون</span>
+                            <span class="news-date">📅 ۲۲ شهریور ۱۴۰۴</span>
+                        </div>
+                        <p class="news-content">
+                            امروز تولد آقای احمد کریمی، از معاونین زحمتکش مدرسه است! برای ایشان سلامتی و موفقیت روزافزون
+                            آرزو می‌کنیم. 🎉
+                        </p>
+                        <a href="#" class="news-link">ارسال پیام تبریک</a>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notifications Container -->
+    <div id="notificationsContainer" style="position: fixed; top: 20px; right: 20px; z-index: 10000; direction: rtl;">
+    </div>
+
+    <!-- Homepage JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

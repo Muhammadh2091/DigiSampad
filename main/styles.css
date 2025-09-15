@@ -145,13 +145,10 @@ body {
     width: clamp(240px, 30vw, 320px);
     background: linear-gradient(180deg, var(--secondary-color), #1e3a5f);
     border-left: 3px solid var(--primary-color);
-    /* تغییر به border-left */
     box-shadow: 2px 0 15px var(--shadow-light);
-    /* تغییر سایه به سمت چپ */
     position: fixed;
     top: 0;
     right: 0;
-    /* تغییر به right */
     height: 100vh;
     overflow-y: auto;
     z-index: 100;
@@ -175,7 +172,6 @@ body {
 
 .sidebar.mobile-hidden {
     transform: translateX(100%);
-    /* تغییر جهت انیمیشن */
 }
 
 .sidebar-header {
@@ -505,7 +501,6 @@ body {
 
 [data-theme="light"] .stat-item {
     background: rgba(29, 78, 216, 0.05);
-    /* soft blue tint */
     border: 1px solid rgba(29, 78, 216, 0.15);
 }
 
@@ -548,13 +543,117 @@ body {
     margin-top: var(--spacing-xs);
 }
 
+/* News Grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.news-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .news-card {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(29, 78, 216, 0.15);
+}
+
+.news-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.2);
+}
+
+[data-theme="light"] .news-card:hover {
+    background: rgba(29, 78, 216, 0.12);
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: right 0.6s;
+}
+
+.news-card:hover::before {
+    right: 100%;
+}
+
+.news-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.news-title {
+    font-family: 'VazirBold', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: var(--spacing-sm) 0;
+}
+
+.news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.news-category {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+[data-theme="light"] .news-category {
+    background: rgba(29, 78, 216, 0.8);
+}
+
+.news-date {
+    font-size: 0.85rem;
+}
+
+.news-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.news-link {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.news-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
 /* Animations */
 @keyframes slideUp {
     from {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -566,7 +665,6 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -577,7 +675,6 @@ body {
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -585,12 +682,9 @@ body {
 
 /* Logo Animation */
 @keyframes logoFloat {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: translateY(0px);
     }
-
     50% {
         transform: translateY(-5px);
     }
@@ -646,17 +740,21 @@ body {
         padding: var(--spacing-lg);
         margin: var(--spacing-lg) 0;
     }
+
     .main-layout {
         flex-direction: column;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
     .main-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
         margin: var(--spacing-sm);
         width: calc(100% - 2 * var(--spacing-sm));
-        max-width: none;
     }
 
     .main-title {
@@ -670,6 +768,10 @@ body {
     }
 
     .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -704,7 +806,6 @@ body {
 
 /* Print styles */
 @media print {
-
     .sidebar,
     .mobile-menu-toggle {
         display: none;
@@ -725,29 +826,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary)
-}
-
-@media (max-width: 480px) {
-    .main-card {
-        padding: var(--spacing-md);
-        /* Reduce padding further */
-        margin: var(--spacing-sm);
-        /* Add margins */
-        width: calc(100vw - 2 * var(--spacing-sm));
-        /* Account for margins */
-    }
-
-    .school-image {
-        width: 100%;
-        height: 200px;
-        /* Fixed height for very small screens */
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-    }
+    color: var(--text-primary);
 }
 
 .mobile-overlay {
@@ -760,7 +839,6 @@ body {
     z-index: 50;
     backdrop-filter: blur(3px);
     display: none;
-    /* Add this */
 }
 
 .mobile-overlay.active {
@@ -769,34 +847,26 @@ body {
 
 .sidebar {
     direction: ltr;
-    /* force scrollbar to left side */
 }
 
 .sidebar * {
     direction: rtl;
-    /* flip the text back to RTL if needed */
 }
 
 html,
 body {
     min-height: 100%;
-    /* instead of fixed height */
     direction: ltr;
-    /* keeps scrollbar on right */
     overflow-y: scroll;
-    /* always allow vertical scroll */
 }
 
 [data-theme="light"] .logo {
     background: linear-gradient(135deg, #93c5fd, #3b82f6);
-    /* lighter blue gradient */
     color: #0f172a;
-    /* dark text for contrast */
 }
 
 .content-area {
     direction: rtl;
-    /* makes Persian text flow right-to-left */
 }
 
 .notification {

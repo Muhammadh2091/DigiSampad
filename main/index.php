@@ -51,6 +51,10 @@
           <span class="nav-icon"></span>
         </button>
         <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+          <span>تولدها</span>
+          <span class="nav-icon"></span>
+        </button>
+        <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
           <span>تکالیف</span>
           <span class="nav-icon"></span>
         </button>
@@ -99,7 +103,8 @@
   </div>
 
   <!-- Notifications Container -->
-  <div id="notificationsContainer" style="position: fixed; top: 20px; right: 20px; z-index: 10000; direction: rtl;"></div>
+  <div id="notificationsContainer" style="position: fixed; top: 20px; right: 20px; z-index: 10000; direction: rtl;">
+  </div>
 
   <!-- Homepage JS -->
   <script src="script.js"></script>

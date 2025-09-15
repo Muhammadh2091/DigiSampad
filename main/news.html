@@ -1248,6 +1248,10 @@
           <span>اخبار</span>
           <span class="nav-icon"></span>
         </button>
+        <button class="nav-item" onclick="setActive(this); navigateToSection('birthdays')" aria-label="تولدها">
+          <span>تولدها</span>
+          <span class="nav-icon"></span>
+        </button>
         <button class="nav-item" onclick="setActive(this); navigateToSection('assignments')" aria-label="تکالیف">
           <span>تکالیف</span>
           <span class="nav-icon"></span>
@@ -1262,6 +1266,7 @@
         </button>
       </nav>
     </aside>
+
 
     <!-- Main Content -->
     <main class="content-area" role="main">
@@ -1469,6 +1474,12 @@
         hideLoading();
         showNotification(`در حال انتقال به بخش ${getSectionName(section)}...`, 'success');
 
+        // ACTUAL NAVIGATION - Add this code:
+        if (section !== 'news') {
+          window.location.href = `${section}.html`;
+        }
+        // If it's news section, we're already here, so no navigation needed
+
         // Close mobile menu after navigation
         if (window.innerWidth <= 768) {
           toggleMobileMenu();
@@ -1483,7 +1494,8 @@
         'news': 'اخبار',
         'assignments': 'تکالیف',
         'calendar': 'تقویم',
-        'summaries': 'خلاصه‌ درس'
+        'summaries': 'خلاصه‌ درس',
+        'birthdays': 'تولدها'
       };
       return sectionNames[section] || section;
     }

@@ -1,7 +1,7 @@
-// Global Variables
+/* Global Variables */
 let previousFocus = null;
 
-// Initialize
+/* Initialize */
 document.addEventListener('DOMContentLoaded', () => {
   initializeApp();
 });
@@ -26,9 +26,9 @@ function initializeApp() {
   hideLoading();
 }
 
-// -------------------------
-// Mobile Menu Functions
-// -------------------------
+/* ------------------------- */
+/* Mobile Menu Functions */
+/* ------------------------- */
 function toggleMobileMenu() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('mobileOverlay');
@@ -76,9 +76,9 @@ function setupMobileMenu() {
   });
 }
 
-// -------------------------
-// Navigation Functions
-// -------------------------
+/* ------------------------- */
+/* Navigation Functions */
+/* ------------------------- */
 function setActive(element) {
   document.querySelectorAll('.nav-item').forEach(item => {
     item.classList.remove('active');
@@ -106,7 +106,8 @@ function handleNav(button) {
     "ثبت‌نام": "register.html",
     "تکالیف": "tasks.html",
     "تقویم": "calendar.html",
-    "خلاصهٔ درس": "summary.html"
+    "خلاصهٔ درس": "summary.html",
+    "تولدها": "birthdays.html"
   };
 
   const labelSpan = button.querySelector('span:not(.nav-icon)');
@@ -123,9 +124,9 @@ function handleNav(button) {
   }
 }
 
-// -------------------------
-// Theme Functions
-// -------------------------
+/* ------------------------- */
+/* Theme Functions */
+/* ------------------------- */
 function toggleTheme() {
   const currentTheme = document.documentElement.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -147,9 +148,9 @@ function setupTheme() {
   }
 }
 
-// -------------------------
-// Notifications
-// -------------------------
+/* ------------------------- */
+/* Notifications */
+/* ------------------------- */
 function showNotification(message, type = 'success') {
   const container = document.getElementById('notificationsContainer');
   if (!container) return;
@@ -172,9 +173,9 @@ function showNotification(message, type = 'success') {
   }, 5000);
 }
 
-// -------------------------
-// Loading Spinner
-// -------------------------
+/* ------------------------- */
+/* Loading Spinner */
+/* ------------------------- */
 function showLoading() {
   const overlay = document.getElementById('loadingOverlay');
   if (overlay) overlay.style.display = 'flex';
@@ -185,9 +186,9 @@ function hideLoading() {
   if (overlay) overlay.style.display = 'none';
 }
 
-// -------------------------
-// Ripple Effect
-// -------------------------
+/* ------------------------- */
+/* Ripple Effect */
+/* ------------------------- */
 function addRippleEffect(element) {
   const ripple = document.createElement('span');
   ripple.classList.add('ripple');
@@ -198,9 +199,9 @@ function addRippleEffect(element) {
   }, 600);
 }
 
-// -------------------------
-// Keyboard Navigation
-// -------------------------
+/* ------------------------- */
+/* Keyboard Navigation */
+/* ------------------------- */
 function setupKeyboardNavigation() {
   document.addEventListener('keydown', (e) => {
     // Close mobile menu with Escape key
@@ -228,9 +229,9 @@ function setupKeyboardNavigation() {
   });
 }
 
-// -------------------------
-// Ripple CSS
-// -------------------------
+/* ------------------------- */
+/* Ripple CSS */
+/* ------------------------- */
 const rippleStyles = `
   .ripple {
     position: absolute;
