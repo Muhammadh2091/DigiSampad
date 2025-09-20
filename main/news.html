@@ -1260,6 +1260,10 @@
           <span>خلاصه‌ درس</span>
           <span class="nav-icon"></span>
         </button>
+        <button class="nav-item" onclick="setActive(this); navigateToSection('album')" aria-label="آلبوم">
+          <span>آلبوم</span>
+          <span class="nav-icon"></span>
+        </button>
       </nav>
     </aside>
 
@@ -1490,7 +1494,8 @@
         'news': 'اخبار',
         'calendar': 'تقویم',
         'summaries': 'خلاصه‌ درس',
-        'birthdays': 'تولدها'
+        'birthdays': 'تولدها',
+        'album': 'آلبوم'
       };
       return sectionNames[section] || section;
     }

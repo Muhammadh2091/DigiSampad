@@ -62,6 +62,10 @@
           <span>خلاصهٔ درس</span>
           <span class="nav-icon"></span>
         </button>
+        <button class="nav-item" onclick="handleNav(this)" aria-selected="false">
+          <span>آلبوم</span>
+          <span class="nav-icon"></span>
+        </button>
       </nav>
     </aside>
 

@@ -106,7 +106,8 @@ function handleNav(button) {
     "ثبت‌نام": "register.html",
     "تقویم": "calendar.html",
     "خلاصهٔ درس": "summary.html",
-    "تولدها": "birthdays.html"
+    "تولدها": "birthdays.html",
+    "آلبوم": "album.html"
   };
 
   const labelSpan = button.querySelector('span:not(.nav-icon)');
