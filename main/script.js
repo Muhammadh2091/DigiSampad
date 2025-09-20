@@ -104,7 +104,6 @@ function handleNav(button) {
     "اخبار": "news.html",
     "ورود": "login.html",
     "ثبت‌نام": "register.html",
-    "تکالیف": "tasks.html",
     "تقویم": "calendar.html",
     "خلاصهٔ درس": "summary.html",
     "تولدها": "birthdays.html"
